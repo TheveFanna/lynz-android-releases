@@ -1,12 +1,14 @@
 # LYNZ Android Releases
 
-Private release artifacts for 凌视 (LYNZ). APK files are stored only as GitHub Release assets, together with version notes and verification metadata.
+Private APK release assets and signed update metadata for 凌视 (LYNZ). Source code remains in KaiXiao55/src-lorat-vn-dockkit, branch android. APK files belong in Release assets, not Git history.
 
-Application source: KaiXiao55/src-lorat-vn-dockkit, branch android.
-Update entry point: https://lynzrc.com (authenticated internal tester distribution).
+The website https://lynzrc.com provides the update API and authenticated tester download access. GitHub archival does not publish an app update: the controlled publisher verifies the artifact, then the owner reviews and publishes a channel through the existing MFA console.
 
-GitHub archival does not publish a version to the app. The controlled publisher verifies an immutable APK and signed metadata, then the website owner selects a channel using the existing MFA console. GitHub credentials are never embedded in the app.
+| Artifact | Purpose | Application source commit |
+| --- | --- | --- |
+| 1.10.85 / code166 | Updater-capable bootstrap already cover-installed on the phone | 2fb751b2237bcaf5d4e646575b5ba761681e7632 |
+| 1.10.86 / code167 | Same functional code, higher-version OTA acceptance target; not USB-installed | 3464672c399f8f7cb9fc17b74f5fa12efe769b3e |
 
-Bootstrap 1.10.85 / code166 uses package com.lynz.rcvision and the existing internal securityTest signer. Cover-install with adb install -r preserves app data. Later updates use the app's verified system-confirmed installer while idle. No APK signing keys, update-signing private keys or account credentials belong in this repository.
+Both use com.lynz.rcvision and the existing internal securityTest signer. Updates preserve data and require a safe idle state and user system confirmation. GitHub credentials, APK/update signing private keys and account credentials must never be stored in the app or this repository.
 
-The release repository tag commit and application source commit are separate values. Bootstrap application source commit: 2fb751b2237bcaf5d4e646575b5ba761681e7632.
+The release repository tag commit and application source commit are separate identifiers. Server publication remains a separate, audited owner action. Current artifacts are private internal tests, not a public/store distribution.
